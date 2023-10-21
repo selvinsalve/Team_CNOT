@@ -1,5 +1,5 @@
 const ethers = require('ethers');
-
+import numpy as np;
 // import ethers from "ethers"
 
 let provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -165,6 +165,9 @@ document.getElementById('playerForm').addEventListener('submit', async function(
     let team = document.getElementById('team').value;
     let capHit = document.getElementById('capHit').value;
 
+    let epsilon = 1.0;
+    rk = rk + np.random.laplace(0, 1/epsilon);
+    capHit = capHit + np.random.laplace(0, 1/epsilon);
     try {
         // Call your smart contract's addPlayer function
         let tx = await contract.addPlayer(playerName, rk, position, team, capHit);
